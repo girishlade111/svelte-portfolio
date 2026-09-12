@@ -4,7 +4,11 @@
 	let i = $state(0);
 	let typed = $state('');
 	let full = $derived(roles[i]);
-	// typewriter driven by $effect (cleanup clears both timer + pending advance)
+	// Reset the visible text whenever the role changes, then type it out
+	$effect(() => {
+		typed = '';
+		void full;
+	});	// typewriter driven by $effect (cleanup clears both timer + pending advance)
 	$effect(() => {
 		let c = 0;
 		let advance: ReturnType<typeof setTimeout> | undefined;
