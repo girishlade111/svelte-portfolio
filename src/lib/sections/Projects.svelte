@@ -8,25 +8,35 @@
 	let q = $state('');
 	let title = $state(''), tagline = $state(''), tags = $state('');
 	let editing: string | null = $state(null);
+	let filtered = $derived(items.filter((p) => (p.title + p.tagline + p.tags.join(' ')).toLowerCase().includes(q.toLowerCase())));
+	function saveEdit() {
+		if (!editing || !title.trim() || !tagline.trim()) return;
+		const tagList = tags.split(',').map((t) => t.trim()).filter(Boolean);
+		items = items.map((p) => (p.id === editing ? { ...p, title, tagline, tags: tagList.length ? tagList : p.tags } : p));
+		editing = null; title = tagline = tags = '';
+	}
+	function edit(p: Project) { editing = p.id; title = p.title; tagline = p.tagline; tags = p.tags.join(', '); }
+	function del(id: string) { items = items.filter((p) => p.id !== id); }
+	function shuffle() { items = [...items].sort(() => Math.random() - 0.5); }
 </script>
 
 <section id="projects" use:reveal>
 	<div class="wrap">
 		<span class="kicker">Toolkit · LadeStack suite</span>
 		<h2>Toolkits — proof, not promises</h2>
-		<p class="sub">Add, edit, delete, filter, shuffle — client state with <code>$state</code> + <code>$derived</code>, animated with <code>fly/fade/flip</code>.</p>
+		<p class="sub">Filter, shuffle, edit, delete — client state with <code>$state</code> + <code>$derived</code>, animated with <code>fly/fade/flip</code>.</p>
 		<div class="card" style="margin:16px 0">
-			<div class="grid c2">
-				<div><label>Search / filter</label><input bind:value={q} placeholder="try 'ai' or 'auth'" /></div>
-				<div><label>{editing ? 'Editing project' : 'New project'} — title</label><input bind:value={title} placeholder="e.g. LS Deploy" /></div>
+			<div style="display:flex;gap:12px;flex-wrap:wrap;align-items:end">
+				<div style="flex:1;min-width:220px"><label>Search / filter</label><input bind:value={q} placeholder="try 'ai' or 'auth'" /></div>
+				<p style="display:flex;gap:8px;margin:0 0 2px"><button class="btn small ghost" onclick={shuffle}>⤨ Shuffle (flip demo)</button></p>
 			</div>
-			<label>Tagline</label><input bind:value={tagline} placeholder="One-line pitch" />
-			<label>Tags (comma separated)</label><input bind:value={tags} placeholder="Svelte, AI" />
-			<p style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
-				<button class="btn small" onclick={save}>{editing ? 'Save edit' : '+ Add project'}</button>
-				{#if editing}<button class="btn small ghost" onclick={() => { editing = null; title = tagline = tags = ''; }}>Cancel</button>{/if}
-				<button class="btn small ghost" onclick={shuffle}>⤨ Shuffle (flip demo)</button>
-			</p>
+			{#if editing}
+				<div style="margin-top:12px;border-top:1px solid var(--hairline);padding-top:12px">
+					<div class="grid c2"><div><label>Title</label><input bind:value={title} /></div><div><label>Tags (comma separated)</label><input bind:value={tags} /></div></div>
+					<label>Tagline</label><input bind:value={tagline} />
+					<p style="margin-top:12px;display:flex;gap:8px"><button class="btn small" onclick={saveEdit}>Save edit</button><button class="btn small ghost" onclick={() => { editing = null; title = tagline = tags = ''; }}>Cancel</button></p>
+				</div>
+			{/if}
 		</div>
 		<div class="grid c2">
 			{#each filtered as p (p.id)}
