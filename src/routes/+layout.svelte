@@ -41,7 +41,7 @@
 		</div>
 		<div class="nav-cta">
 			<a class="btn small" href="/#contact">Get started</a>
-			<button class="btn small ghost" onclick={() => (menuOpen = !menuOpen)} aria-label="Menu" style="display:none">☰</button>
+			<button class="btn small ghost menu-btn" onclick={() => (menuOpen = !menuOpen)} aria-label="Menu">☰</button>
 		</div>
 	</div>
 </nav>

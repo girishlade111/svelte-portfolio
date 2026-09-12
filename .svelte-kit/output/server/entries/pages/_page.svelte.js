@@ -56,7 +56,7 @@ function Projects($$renderer, $$props) {
     let items = projects;
     let q = "";
     let filtered = derived(() => items.filter((p) => (p.title + p.tagline + p.tags.join(" ")).toLowerCase().includes(q.toLowerCase())));
-    $$renderer2.push(`<section id="projects"><div class="wrap"><span class="kicker">Toolkit · LadeStack suite</span> <h2>Toolkits — proof, not promises</h2> <p class="sub">Filter, shuffle, edit, delete — client state with <code>$state</code> + <code>$derived</code>, animated with <code>fly/fade/flip</code>.</p> <div class="card" style="margin:16px 0"><div style="display:flex;gap:12px;flex-wrap:wrap;align-items:end"><div style="flex:1;min-width:220px"><label>Search / filter</label><input${attr("value", q)} placeholder="try 'ai' or 'auth'"/></div> <p style="display:flex;gap:8px;margin:0 0 2px"><button class="btn small ghost">⤨ Shuffle (flip demo)</button></p></div> `);
+    $$renderer2.push(`<section id="projects"><div class="wrap"><span class="kicker">Toolkit · LadeStack suite</span> <h2>Toolkits — proof, not promises</h2> <p class="sub">Filter, shuffle, edit, delete — client state with <code>$state</code> + <code>$derived</code>, animated with <code>fly/fade/flip</code>.</p> <div class="card" style="margin:16px 0"><div style="display:flex;gap:12px;flex-wrap:wrap;align-items:end"><div style="flex:1;min-width:220px"><label for="pq">Search / filter</label><input id="pq"${attr("value", q)} placeholder="try 'ai' or 'auth'"/></div> <p style="display:flex;gap:8px;margin:0 0 2px"><button class="btn small ghost">⤨ Shuffle (flip demo)</button></p></div> `);
     {
       $$renderer2.push("<!--[-1-->");
     }
