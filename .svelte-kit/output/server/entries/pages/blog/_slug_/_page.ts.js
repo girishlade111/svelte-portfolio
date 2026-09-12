@@ -1,6 +1,9 @@
 import { a as posts } from "../../../../chunks/data.js";
 import { error } from "@sveltejs/kit";
 const prerender = true;
+async function entries() {
+  return posts.map((p) => ({ slug: p.slug }));
+}
 const load = async ({ params }) => {
   const post = posts.find((p) => p.slug === params.slug);
   if (!post) error(404, "Note not found");
@@ -9,6 +12,7 @@ const load = async ({ params }) => {
   return { post: { ...current, html } };
 };
 export {
+  entries,
   load,
   prerender
 };

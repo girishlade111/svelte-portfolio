@@ -112,7 +112,7 @@ function Skills($$renderer, $$props) {
     const each_array = ensure_array_like(skills);
     for (let idx = 0, $$length = each_array.length; idx < $$length; idx++) {
       let s = each_array[idx];
-      $$renderer2.push(`<button role="listitem"${attr_class("orbit-node", void 0, { "active": selected === s.name })}${attr_style(`${stringify(pos(idx))}width:${stringify(size(s.level))}px;height:${stringify(size(s.level))}px;margin:-${stringify(Math.round(size(s.level) / 2))}px 0 0 -${stringify(Math.round(size(s.level) / 2))}px;${selected === s.name ? "border-color:var(--primary-glow);" : ""}`)}${attr("title", `${stringify(s.name)} ${stringify(s.level)}%`)}>${escape_html(s.name.split(" ")[0])}<br/>${escape_html(s.level)}%</button>`);
+      $$renderer2.push(`<button${attr_class("orbit-node", void 0, { "active": selected === s.name })}${attr_style(`${stringify(pos(idx))}width:${stringify(size(s.level))}px;height:${stringify(size(s.level))}px;margin:-${stringify(Math.round(size(s.level) / 2))}px 0 0 -${stringify(Math.round(size(s.level) / 2))}px;${selected === s.name ? "border-color:var(--primary-glow);" : ""}`)}${attr("title", `${stringify(s.name)} ${stringify(s.level)}%`)}>${escape_html(s.name.split(" ")[0])}<br/>${escape_html(s.level)}%</button>`);
     }
     $$renderer2.push(`<!--]--></div> <div class="card"><!---->`);
     {

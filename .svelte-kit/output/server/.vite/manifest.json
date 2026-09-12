@@ -165,10 +165,7 @@
     "file": "entries/pages/blog/_layout.ts.js",
     "name": "entries/pages/blog/_layout.ts",
     "src": "src/routes/blog/+layout.ts",
-    "isEntry": true,
-    "imports": [
-      "_data.js"
-    ]
+    "isEntry": true
   },
   "src/routes/blog/+page.svelte": {
     "file": "entries/pages/blog/_page.svelte.js",
