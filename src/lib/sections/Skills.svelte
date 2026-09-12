@@ -28,7 +28,7 @@
 			ctx.fillStyle = dark ? '#1d2637' : '#e3e8f2';
 			ctx.beginPath(); ctx.roundRect(280, y - 14, W - 300, 26, 13); ctx.fill();
 			const grad = ctx.createLinearGradient(280, 0, W - 20, 0);
-			grad.addColorStop(0, '#ff6b1a'); grad.addColorStop(1, '#ffb347');
+			grad.addColorStop(0, '#0007cd'); grad.addColorStop(1, '#00d4ff');
 			ctx.fillStyle = active ? '#34d399' : grad;
 			ctx.beginPath(); ctx.roundRect(280, y - 14, Math.max(26, w), 26, 13); ctx.fill();
 			ctx.fillStyle = dark ? '#e8edf7' : '#101828';

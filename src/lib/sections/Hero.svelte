@@ -25,15 +25,21 @@
 	});
 </script>
 
-<section id="hero" use:reveal>
-	<div class="wrap">
-		<span class="kicker">$state + $derived · Hero</span>
-		<h1>Girish Lade<br /><span class="hero-rot">{typed || '…'}</span></h1>
-		<p class="sub">Mechanical engineer from Pandharpur, now building in Pune/PCMC. I direct AI tools to ship fast — founder of <b>LadeStack</b> (ladestack.in), free no-login AI dev tools. This page is my resume <i>and</i> a live Svelte 5 + SvelteKit capability test.</p>
-		<p style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+<section id="hero" use:reveal class="spotlight" style="border-top:0">
+	<div class="wrap" style="position:relative;z-index:1">
+		<span class="kicker">Girish Lade · Founder, LadeStack</span>
+		<h1>Ship software<br />at machine speed.</h1>
+		<p class="sub" style="margin:0 auto;max-width:60ch">Mechanical engineer from Pandharpur, now building in Pune. I direct AI tools to ship fast — <span class="ln-w">{typed || '…'}</span></p>
+		<p style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
 			<a class="btn" href="#projects">See LadeStack work</a>
 			<a class="btn ghost" href="#contact">Hire / collaborate →</a>
 		</p>
-		<p class="cap">Capability: <code>$state</code> index + <code>$derived</code> role text, typed via <code>$effect</code> interval. Route changes use the <code>View Transitions API</code> (see +layout).</p>
+		<div class="terminal-grid">
+			<div class="tpane"><div class="tbar"><span class="tdot"></span><span class="tdot"></span><span class="tdot"></span></div><span class="ln-g">$</span> <span class="ln-w">npx ladestack ship</span><br /><span class="ln-g">✓</span> GB Coder … live<br /><span class="ln-g">✓</span> Dev Toolbox (20+ tools) … live<br /><span class="ln-g">✓</span> LS Auth … live</div>
+			<div class="tpane"><div class="tbar"><span class="tdot"></span><span class="tdot"></span><span class="tdot"></span></div><span class="ln-b">const</span> <span class="ln-w">stack</span> = {<br />&nbsp;&nbsp;ui: <span class="ln-v">'svelte5:runes'</span>,<br />&nbsp;&nbsp;ssr: <span class="ln-v">'streaming'</span>,<br />&nbsp;&nbsp;ship: <span class="ln-b">daily</span><br />}<span class="cursor"></span></div>
+			<div class="tpane"><div class="tbar"><span class="tdot"></span><span class="tdot"></span><span class="tdot"></span></div><span class="ln-g">● online</span> ladestack.in — 200 OK · 41ms<br /><span class="ln-g">● active</span> targeting VMware / SAP / Cisco<br /><span class="ln-b">↗</span> open to SDE roles · Pune / remote</div>
+			<div class="tpane"><div class="tbar"><span class="tdot"></span><span class="tdot"></span><span class="tdot"></span></div><span class="ln-g">$</span> git log --proof<br /><span class="ln-v">2026</span> vibe-crm shipped in a weekend<br /><span class="ln-v">2024</span> factory QC → systems thinking<br /><span class="ln-b">→</span> proof, not promises_<span class="cursor"></span></div>
+		</div>
+		<p class="cap">Capability: <code>$state</code> index + <code>$derived</code> role text, typed via <code>$effect</code> · View Transitions on nav</p>
 	</div>
 </section>

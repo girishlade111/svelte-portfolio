@@ -32,7 +32,7 @@
 	<div class="wrap">
 		<span class="kicker">CRUD · use:action · transitions</span>
 		<h2>LadeStack suite — live CRUD demo</h2>
-		<p class="sub">Add, edit, delete, filter, shuffle. Client-state only (<code>$state</code> array + <code>$derived</code> filter). Cards animate with <code>fly/fade/flip</code>; reveal on scroll via custom <code>use:reveal</code>.</p>
+		<p class="sub">Add, edit, delete, filter, shuffle — client state with <code>$state</code> + <code>$derived</code>, animated with <code>fly/fade/flip</code>.</p>
 		<div class="card" style="margin:16px 0">
 			<div class="grid c2">
 				<div><label>Search / filter</label><input bind:value={q} placeholder="try 'ai' or 'auth'" /></div>
