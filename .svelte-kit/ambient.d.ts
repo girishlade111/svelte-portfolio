@@ -45,6 +45,7 @@ declare module '$env/static/private' {
 	export const ChocolateyLastPathUpdate: string;
 	export const ChocolateyToolsLocation: string;
 	export const CHROME_CRASHPAD_PIPE_NAME: string;
+	export const CLINE_ACTIVE: string;
 	export const COLOR: string;
 	export const COLORTERM: string;
 	export const CommonProgramFiles: string;
@@ -226,6 +227,7 @@ declare module '$env/dynamic/private' {
 		ChocolateyLastPathUpdate: string;
 		ChocolateyToolsLocation: string;
 		CHROME_CRASHPAD_PIPE_NAME: string;
+		CLINE_ACTIVE: string;
 		COLOR: string;
 		COLORTERM: string;
 		CommonProgramFiles: string;
