@@ -1,10 +1,5 @@
-{#snippet card(title: string, body: string)}
-	<div class="card"><h3>{title}</h3><p class="muted">{body}</p></div>
-{/snippet}
-
 <script lang="ts">
 	import { reveal } from '$lib/actions';
-	import type { Snippet } from 'svelte';
 	// $props + $bindable demo: parent owns `open`, child can toggle it too
 	let { open = $bindable(false) }: { open?: boolean } = $props();
 	let qa = $state([
@@ -14,6 +9,10 @@
 	]);
 	let shown = $state(0);
 </script>
+
+{#snippet card(title: string, body: string)}
+	<div class="card"><h3>{title}</h3><p class="muted">{body}</p></div>
+{/snippet}
 
 <section id="about" use:reveal>
 	<div class="wrap">
