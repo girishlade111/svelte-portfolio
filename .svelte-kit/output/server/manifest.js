@@ -14,10 +14,7 @@ return {
 		nodes: [
 			__memo(() => import('./nodes/0.js')),
 			__memo(() => import('./nodes/1.js')),
-			__memo(() => import('./nodes/2.js')),
 			__memo(() => import('./nodes/3.js')),
-			__memo(() => import('./nodes/4.js')),
-			__memo(() => import('./nodes/5.js')),
 			__memo(() => import('./nodes/6.js'))
 		],
 		remotes: {
@@ -28,32 +25,18 @@ return {
 				id: "/",
 				pattern: /^\/$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 3 },
-				endpoint: null
-			},
-			{
-				id: "/blog",
-				pattern: /^\/blog\/?$/,
-				params: [],
-				page: { layouts: [0,2,], errors: [1,,], leaf: 4 },
-				endpoint: null
-			},
-			{
-				id: "/blog/[slug]",
-				pattern: /^\/blog\/([^/]+?)\/?$/,
-				params: [{"name":"slug","optional":false,"rest":false,"chained":false}],
-				page: { layouts: [0,2,], errors: [1,,], leaf: 5 },
+				page: { layouts: [0,], errors: [1,], leaf: 2 },
 				endpoint: null
 			},
 			{
 				id: "/boom",
 				pattern: /^\/boom\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 6 },
+				page: { layouts: [0,], errors: [1,], leaf: 3 },
 				endpoint: null
 			}
 		],
-		prerendered_routes: new Set([]),
+		prerendered_routes: new Set(["/blog","/blog/svelte-5-runes-mental-model","/blog/vibe-coding-manufacturing","/blog/ssr-vs-prerender"]),
 		matchers: async () => {
 			
 			return {  };
