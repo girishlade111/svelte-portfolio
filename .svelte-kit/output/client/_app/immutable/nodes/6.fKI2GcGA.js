@@ -1,0 +1,1 @@
+import"../chunks/Bzak7iHL.js";import"../chunks/P7VOppKi.js";import{i as r}from"../chunks/BUrMyzUd.js";const o=!1,t=!0,l=Object.freeze(Object.defineProperty({__proto__:null,prerender:o,ssr:t},Symbol.toStringTag,{value:"Module"}));function p(s,e){throw r(e,!1),new Error("Deliberate demo crash — the +error.svelte boundary should catch this.")}export{p as component,l as universal};
