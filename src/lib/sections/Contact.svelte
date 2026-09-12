@@ -34,17 +34,17 @@ let { form = null }: { form?: ContactForm } = $props();
 				};
 			}} class="card">
 				<label for="cname">Name</label>
-				<input id="cname" name="name" value={form && !form.ok ? String(form.values?.name ?? '') : ''} required minlength="2" />
-				{#if form && !form.ok && form.errors?.name}<p class="err">{form.errors.name[0]}</p>{/if}
+				<input id="cname" name="name" value={failed ? String(failed.values?.name ?? '') : ''} required minlength="2" />
+				{#if failed?.errors?.name}<p class="err">{failed.errors.name[0]}</p>{/if}
 				<label for="cemail">Email</label>
-				<input id="cemail" name="email" type="email" value={form && !form.ok ? String(form.values?.email ?? '') : ''} required />
-				{#if form && !form.ok && form.errors?.email}<p class="err">{form.errors.email[0]}</p>{/if}
+				<input id="cemail" name="email" type="email" value={failed ? String(failed.values?.email ?? '') : ''} required />
+				{#if failed?.errors?.email}<p class="err">{failed.errors.email[0]}</p>{/if}
 				<label for="cmsg">Message</label>
-				<textarea id="cmsg" name="message" rows="4" required minlength="10">{form && !form.ok ? String(form.values?.message ?? '') : ''}</textarea>
-				{#if form && !form.ok && form.errors?.message}<p class="err">{form.errors.message[0]}</p>{/if}
+				<textarea id="cmsg" name="message" rows="4" required minlength="10">{failed ? String(failed.values?.message ?? '') : ''}</textarea>
+				{#if failed?.errors?.message}<p class="err">{failed.errors.message[0]}</p>{/if}
 				<p style="margin-top:12px"><button class="btn" disabled={sending}>{sending ? 'Sending…' : 'Send message'}</button></p>
 				{#if optimistic}<p class="muted">{optimistic} (optimistic UI)</p>{/if}
-				{#if form?.ok}<p class="ok">✓ Thanks {form.name}! I reply within 48h. (No-JS safe — this rendered on the server.)</p>{/if}
+				{#if succeeded}<p class="ok">✓ Thanks {succeeded.name}! I reply within 48h. (No-JS safe — this rendered on the server.)</p>{/if}
 				{#if $contactToast}<p class="ok">{$contactToast} — via store toast</p>{/if}
 			</form>
 			<div class="card">
