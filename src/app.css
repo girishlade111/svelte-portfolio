@@ -1,5 +1,8 @@
+/* Portfolio theme */
 :root {
-  --text: #6b6375;
+	--bg: #0b0e14;
+}
+
   --text-h: #08060d;
   --bg: #fff;
   --border: #e5e4e7;
