@@ -8,24 +8,6 @@
 	let q = $state('');
 	let title = $state(''), tagline = $state(''), tags = $state('');
 	let editing: string | null = $state(null);
-	let filtered = $derived(
-		items.filter((p) => (p.title + p.tagline + p.tags.join(' ')).toLowerCase().includes(q.toLowerCase()))
-	);
-
-	function save() {
-		if (!title.trim() || !tagline.trim()) return;
-		const tagList = tags.split(',').map((t) => t.trim()).filter(Boolean);
-		if (editing) {
-			items = items.map((p) => (p.id === editing ? { ...p, title, tagline, tags: tagList } : p));
-			editing = null;
-		} else {
-			items = [...items, { id: crypto.randomUUID(), title, tagline, tags: tagList.length ? tagList : ['Custom'], url: 'https://ladestack.in' }];
-		}
-		title = tagline = tags = '';
-	}
-	function edit(p: Project) { editing = p.id; title = p.title; tagline = p.tagline; tags = p.tags.join(', '); }
-	function del(id: string) { items = items.filter((p) => p.id !== id); }
-	function shuffle() { items = [...items].sort(() => Math.random() - 0.5); }
 </script>
 
 <section id="projects" use:reveal>
