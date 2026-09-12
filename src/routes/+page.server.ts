@@ -4,7 +4,7 @@ import { timeline } from '$lib/data';
 export const load: PageServerLoad = async () => {
 	// SSR: timeline served from server; streamed demo resolves after a delay
 	const streamed = new Promise<string>((res) => setTimeout(() => res('SSR payload hydrated · streamed note arrived late, page stayed interactive'), 1200));
-	return { timeline, streamed, contactForm: null };
+	return { timeline, streamed };
 };
 
 export const actions = {
