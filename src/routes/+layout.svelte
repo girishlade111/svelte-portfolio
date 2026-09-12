@@ -1,17 +1,21 @@
 <script lang="ts">
 	import '../theme.css';
-	import { initTheme, useTheme } from '$lib/theme';
+	import { initTheme } from '$lib/theme';
 	import { visits } from '$lib/stores';
 	import { onNavigate } from '$app/navigation';
 	import type { Snippet } from 'svelte';
 
 	let { children }: { children: Snippet } = $props();
 	initTheme();
-	const theme = useTheme();
+	let scrolled = $state(false);
+	let menuOpen = $state(false);
 
-	// Start the cross-tab visits counter client-side only (SSR-safe)
 	$effect(() => {
 		visits.start();
+		const onScroll = () => (scrolled = window.scrollY > 12);
+		onScroll();
+		window.addEventListener('scroll', onScroll, { passive: true });
+		return () => window.removeEventListener('scroll', onScroll);
 	});
 	// View Transitions API on route nav
 	onNavigate((navigation) => {
@@ -24,32 +28,33 @@
 	});
 </script>
 
-<nav class="top">
+<nav class="top" class:scrolled>
 	<div class="wrap">
 		<a class="brand" href="/"><span class="brand-mark">G</span>Girish<b>Lade</b></a>
-		<div class="links">
+		<div class="nav-links" class:menu-open={menuOpen}>
 			<a href="/#about">About</a>
 			<a href="/#projects">Projects</a>
 			<a href="/#skills">Skills</a>
 			<a href="/#experience">Experience</a>
 			<a href="/blog">Blog</a>
 			<a href="/#contact">Contact</a>
-			<a class="btn small" href="/#contact" style="margin-left:8px">Get started</a>
-			<button class="btn small ghost" onclick={() => theme.update((t) => (t === 'dark' ? 'light' : 'dark'))} style="display:none">
-				{$theme === 'dark' ? '☀ Light' : '◐ Dark'} · visits {$visits}
-			</button>
+		</div>
+		<div class="nav-cta">
+			<a class="btn small" href="/#contact">Get started</a>
+			<button class="btn small ghost" onclick={() => (menuOpen = !menuOpen)} aria-label="Menu" style="display:none">☰</button>
 		</div>
 	</div>
 </nav>
 
 <main>{@render children()}</main>
 
-<footer>
-	<div class="fgrid">
-		<div><a class="brand" href="/"><span class="brand-mark">G</span>Girish<b>Lade</b></a><p class="muted" style="font-size:13px;margin-top:12px">Mechanical engineer turned vibe coder.<br />Founder, LadeStack · Pandharpur → Pune.</p></div>
-		<div><b style="color:#fff;font-size:13px">Work</b><a href="/#projects">Projects</a><a href="/#skills">Skills</a><a href="/#experience">Experience</a></div>
-		<div><b style="color:#fff;font-size:13px">Content</b><a href="/blog">Blog</a><a href="/boom">Error demo</a></div>
-		<div><b style="color:#fff;font-size:13px">Elsewhere</b><a href="https://ladestack.in">ladestack.in</a><a href="https://github.com/girishlade111">GitHub</a></div>
-		<div><b style="color:#fff;font-size:13px">Contact</b><a href="/#contact">Hire me</a><a href="/#about">About</a></div>
+<footer class="modern">
+	<div class="footer-cta">Let's build something<br />that ships. <a class="btn" href="/#contact" style="vertical-align:middle;margin-left:12px">Get started →</a></div>
+	<div class="footer-clusters">
+		<div><b>Work</b><a href="/#projects">Projects</a><a href="/#skills">Skills</a><a href="/#experience">Experience</a></div>
+		<div><b>Content</b><a href="/blog">Blog</a><a href="/boom">Error demo</a></div>
+		<div><b>Elsewhere</b><a href="https://ladestack.in">ladestack.in</a><a href="https://github.com/girishlade111">GitHub</a></div>
+		<div><b>Contact</b><a href="/#contact">Hire me</a><a href="/#about">About</a></div>
+		<div style="margin-left:auto;align-self:end"><span class="muted" style="font-size:12px">Mechanical engineer turned vibe coder · Founder, LadeStack · Pandharpur → Pune</span></div>
 	</div>
 </footer>
