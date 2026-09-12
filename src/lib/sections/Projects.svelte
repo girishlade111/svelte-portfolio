@@ -30,8 +30,8 @@
 
 <section id="projects" use:reveal>
 	<div class="wrap">
-		<span class="kicker">CRUD · use:action · transitions</span>
-		<h2>LadeStack suite — live CRUD demo</h2>
+		<span class="kicker">Toolkit · LadeStack suite</span>
+		<h2>Toolkits — proof, not promises</h2>
 		<p class="sub">Add, edit, delete, filter, shuffle — client state with <code>$state</code> + <code>$derived</code>, animated with <code>fly/fade/flip</code>.</p>
 		<div class="card" style="margin:16px 0">
 			<div class="grid c2">
