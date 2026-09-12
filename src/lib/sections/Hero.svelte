@@ -4,16 +4,22 @@
 	let i = $state(0);
 	let typed = $state('');
 	let full = $derived(roles[i]);
-	// typewriter driven by $effect
+	// typewriter driven by $effect (cleanup clears both timer + pending advance)
 	$effect(() => {
-		typed = '';
 		let c = 0;
+		let advance: ReturnType<typeof setTimeout> | undefined;
 		const t = setInterval(() => {
 			c++;
 			typed = full.slice(0, c);
-			if (c >= full.length) { clearInterval(t); setTimeout(() => (i = (i + 1) % roles.length), 1600); }
+			if (c >= full.length) {
+				clearInterval(t);
+				advance = setTimeout(() => (i = (i + 1) % roles.length), 1600);
+			}
 		}, 55);
-		return () => clearInterval(t);
+		return () => {
+			clearInterval(t);
+			if (advance) clearTimeout(advance);
+		};
 	});
 </script>
 
