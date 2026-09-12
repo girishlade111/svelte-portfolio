@@ -2,6 +2,8 @@ import type { PageLoad } from './$types';
 import { posts } from '$lib/data';
 import { error } from '@sveltejs/kit';
 
+export const prerender = true;
+
 export const load: PageLoad = async ({ params }) => {
 	const post = posts.find((p) => p.slug === params.slug);
 	if (!post) error(404, 'Note not found');
