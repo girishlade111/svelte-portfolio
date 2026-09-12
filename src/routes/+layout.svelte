@@ -6,17 +6,15 @@
 	import type { Snippet } from 'svelte';
 
 	let { children }: { children: Snippet } = $props();
-	initTheme();
 	const theme = useTheme();
+	initTheme();
 
-	// View Transitions API on route nav
-	onNavigate((nav) => {
-		const d = document as Document & { startViewTransition?: (cb: () => void) => void };
+	// View Transitions API on route nav (SvelteKit-recommended pattern)
+	onNavigate(async ({ complete }) => {
+		const d = document as Document & { startViewTransition?: (cb: () => Promise<void>) => void };
 		if (!d.startViewTransition) return;
-		return new Promise<void>((res) => {
-			d.startViewTransition(() => res());
-			nav.complete.then(() => {}).catch(() => {});
-		});
+		await complete;
+		d.startViewTransition(async () => {});
 	});
 </script>
 
