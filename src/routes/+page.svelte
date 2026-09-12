@@ -5,11 +5,10 @@
 	import Skills from '$lib/sections/Skills.svelte';
 	import Experience from '$lib/sections/Experience.svelte';
 	import Contact from '$lib/sections/Contact.svelte';
-	import type { TimelineItem } from '$lib/data';
-	import type { ActionData } from './$types';
+	import type { PageData, ActionData } from './$types';
 	// `form` is populated by the `contact` action: undefined on first load,
 	// ActionData (fail(400) data or success) after submit.
-	let { data, form }: { data: { timeline: TimelineItem[]; streamed: Promise<string> }; form: ActionData } = $props();
+	let { data, form }: { data: PageData; form: ActionData } = $props();
 </script>
 
 <svelte:head><title>Girish Lade — Vibe Coder · Founder, LadeStack</title></svelte:head>
