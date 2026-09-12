@@ -9,6 +9,10 @@
 	initTheme();
 	const theme = useTheme();
 
+	// Start the cross-tab visits counter client-side only (SSR-safe)
+	$effect(() => {
+		visits.start();
+	});
 	// View Transitions API on route nav
 	onNavigate((navigation) => {
 		const d = document as Document & { startViewTransition?: (cb: () => void) => { finished: Promise<void> } };
