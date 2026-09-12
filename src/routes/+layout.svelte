@@ -3,7 +3,6 @@
 	import { initTheme, useTheme } from '$lib/theme';
 	import { visits } from '$lib/stores';
 	import { onNavigate } from '$app/navigation';
-	import { page } from '$app/state';
 	import type { Snippet } from 'svelte';
 
 	let { children }: { children: Snippet } = $props();

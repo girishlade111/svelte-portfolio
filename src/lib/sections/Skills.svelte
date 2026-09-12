@@ -6,9 +6,10 @@
 	const theme = useTheme();
 	let hover = $state<string | null>(null);
 	let canvas: HTMLCanvasElement;
-	// $effect: redraw radar/bars whenever hover or theme changes
+	// $effect: redraw bars whenever hover or theme changes.
+	// $theme is read for tracking only (void) — class detection reads the DOM.
 	$effect(() => {
-		const t = $theme; void t;
+		void $theme;
 		const h = hover; void h;
 		if (!canvas) return;
 		const ctx = canvas.getContext('2d');
