@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	// +error.svelte receives status/message via $app/state — no props needed
 </script>
 
 <section>
