@@ -1,40 +1,29 @@
 <script lang="ts">
+	import { flip } from 'svelte/animate';
+	import { fly } from 'svelte/transition';
 	import { reveal } from '$lib/actions';
 	import { useTheme } from '$lib/theme';
 	import { skills } from '$lib/data';
 
 	const theme = useTheme();
-	let hover = $state<string | null>(null);
-	let canvas: HTMLCanvasElement;
-	// $effect: redraw bars whenever hover or theme changes.
-	// $theme is read for tracking only (void) — class detection reads the DOM.
-	$effect(() => {
-		void $theme;
-		const h = hover; void h;
-		if (!canvas) return;
-		const ctx = canvas.getContext('2d');
-		if (!ctx) return;
-		const W = (canvas.width = canvas.offsetWidth * 2);
-		const H = (canvas.height = 320);
-		ctx.clearRect(0, 0, W, H);
-		const dark = document.documentElement.classList.contains('light') === false;
-		skills.forEach((s, idx) => {
-			const y = 30 + idx * 48;
-			const w = (W - 320) * (s.level / 100);
-			const active = hover === s.name;
-			ctx.fillStyle = '#a8a8a8';
-			ctx.font = '24px Inter, system-ui';
-			ctx.fillText(s.name, 8, y + 8);
-			ctx.fillStyle = '#222222';
-			ctx.beginPath(); ctx.roundRect(280, y - 14, W - 300, 26, 13); ctx.fill();
-			const grad = ctx.createLinearGradient(280, 0, W - 20, 0);
-			grad.addColorStop(0, '#0007cd'); grad.addColorStop(1, '#00d4ff');
-			ctx.fillStyle = active ? '#33d17a' : grad;
-			ctx.beginPath(); ctx.roundRect(280, y - 14, Math.max(26, w), 26, 13); ctx.fill();
-			ctx.fillStyle = '#ffffff';
-			ctx.fillText(s.level + '%', W - 90, y + 8);
-		});
-	});
+	let selected = $state('AI-assisted shipping');
+	let detail = $derived(skills.find((s) => s.name === selected) ?? skills[0]);
+	const notes: Record<string, string> = {
+		'Svelte 5 / SvelteKit': 'Runes, SSR + streaming — this whole site.',
+		TypeScript: 'Strict types on every component and load().',
+		'CSS / Responsive UI': 'Dark dev-tool aesthetic, 8px CTA dialect.',
+		'Node / APIs': 'Form actions, zod validation, endpoints.',
+		'AI-assisted shipping': 'Spec → agent → review → ship daily.',
+		'Manufacturing / QC': 'SOPs, QC gates, systems thinking from the floor.'
+	};
+	const ringOf = (idx: number) => idx % 3;
+	const angleOf = (idx: number) => (idx * 137.5) % 360;
+	const pos = (idx: number) => {
+		const a = (angleOf(idx) * Math.PI) / 180;
+		const r = ringOf(idx) === 0 ? 46 : ringOf(idx) === 1 ? 33 : 20;
+		return `left:${50 + r * Math.cos(a)}%;top:${50 + r * Math.sin(a)}%;`;
+	};
+	const size = (level: number) => Math.round(56 + level * 0.45);
 </script>
 
 <section id="skills" use:reveal>
