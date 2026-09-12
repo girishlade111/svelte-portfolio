@@ -4,6 +4,10 @@ import { error } from '@sveltejs/kit';
 
 export const prerender = true;
 
+export async function entries() {
+	return posts.map((p) => ({ slug: p.slug }));
+}
+
 export const load: PageLoad = async ({ params }) => {
 	const post = posts.find((p) => p.slug === params.slug);
 	if (!post) error(404, 'Note not found');

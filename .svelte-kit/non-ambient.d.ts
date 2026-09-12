@@ -39,7 +39,7 @@ declare module "$app/types" {
 			"/blog/[slug]": { slug: string };
 			"/boom": Record<string, never>
 		};
-		Pathname(): "/" | "/blog" | `/blog/${string}` & {} | "/boom";
+		Pathname(): "/" | "/blog" | `/blog/${string}` & {} | `/blog/${string}/` & {} | "/boom";
 		ResolvedPathname(): `${"" | `/${string}`}${ReturnType<AppTypes['Pathname']>}`;
 		Asset(): string & {};
 	}

@@ -36,7 +36,7 @@
 				<div class="orbit-ring"></div><div class="orbit-ring r2"></div><div class="orbit-ring r3"></div>
 				<div class="orbit-center">Girish</div>
 				{#each skills as s, idx (s.name)}
-					<button role="listitem" class="orbit-node" class:active={selected === s.name} style="{pos(idx)}width:{size(s.level)}px;height:{size(s.level)}px;margin:-{Math.round(size(s.level) / 2)}px 0 0 -{Math.round(size(s.level) / 2)}px;{selected === s.name ? 'border-color:var(--primary-glow);' : ''}"
+					<button class="orbit-node" class:active={selected === s.name} style="{pos(idx)}width:{size(s.level)}px;height:{size(s.level)}px;margin:-{Math.round(size(s.level) / 2)}px 0 0 -{Math.round(size(s.level) / 2)}px;{selected === s.name ? 'border-color:var(--primary-glow);' : ''}"
 						onmouseenter={() => (selected = s.name)} onfocus={() => (selected = s.name)} onclick={() => (selected = s.name)}
 						in:fly={{ y: 14, delay: idx * 70 }} animate:flip={{ duration: 300 }} title="{s.name} {s.level}%">{s.name.split(' ')[0]}<br />{s.level}%</button>
 				{/each}
