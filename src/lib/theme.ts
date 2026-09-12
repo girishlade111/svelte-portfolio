@@ -5,10 +5,10 @@ export const THEME_KEY = Symbol('theme');
 export type Theme = 'dark' | 'light';
 
 export function initTheme(): Writable<Theme> {
-	const stored = typeof localStorage !== 'undefined' ? localStorage.getItem('gl-theme') : null;
+	const stored = typeof window !== 'undefined' ? localStorage.getItem('gl-theme') : null;
 	const theme: Writable<Theme> = writable(stored === 'light' ? 'light' : 'dark');
 	theme.subscribe((v) => {
-		if (typeof document !== 'undefined') {
+		if (typeof window !== 'undefined') {
 			document.documentElement.classList.toggle('light', v === 'light');
 			localStorage.setItem('gl-theme', v);
 		}

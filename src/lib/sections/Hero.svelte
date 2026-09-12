@@ -4,19 +4,16 @@
 	let i = $state(0);
 	let typed = $state('');
 	let full = $derived(roles[i]);
-	// Reset the visible text whenever the role changes, then type it out
+	// Single $effect owns the typewriter: re-runs when `full` changes, cleans up timers
 	$effect(() => {
+		const target = full;
 		typed = '';
-		void full;
-	});
-	// typewriter driven by $effect (cleanup clears both timer + pending advance)
-	$effect(() => {
 		let c = 0;
 		let advance: ReturnType<typeof setTimeout> | undefined;
 		const t = setInterval(() => {
 			c++;
-			typed = full.slice(0, c);
-			if (c >= full.length) {
+			typed = target.slice(0, c);
+			if (c >= target.length) {
 				clearInterval(t);
 				advance = setTimeout(() => (i = (i + 1) % roles.length), 1600);
 			}
