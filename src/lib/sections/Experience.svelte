@@ -2,6 +2,12 @@
 	import { reveal } from '$lib/actions';
 	import type { TimelineItem } from '$lib/data';
 	let { items, streamed }: { items: TimelineItem[]; streamed: Promise<string> } = $props();
+	const stats: Record<string, string> = {
+		'Founder, LadeStack': '20+ free tools live · 0 login walls',
+		'Mechanical Engineer (Production)': 'QC + process gains on a live floor',
+		'Vibe Coder → Software Engineer': 'Svelte 5 · weekly public ships',
+		'Pandharpur → Pune': 'Small-town roots → production-grade output'
+	};
 </script>
 
 <section id="experience" use:reveal>
