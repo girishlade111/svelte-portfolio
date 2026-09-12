@@ -27,13 +27,13 @@
 		<p class="sub">Filter, shuffle, edit, delete — client state with <code>$state</code> + <code>$derived</code>, animated with <code>fly/fade/flip</code>.</p>
 		<div class="card" style="margin:16px 0">
 			<div style="display:flex;gap:12px;flex-wrap:wrap;align-items:end">
-				<div style="flex:1;min-width:220px"><label>Search / filter</label><input bind:value={q} placeholder="try 'ai' or 'auth'" /></div>
+				<div style="flex:1;min-width:220px"><label for="pq">Search / filter</label><input id="pq" bind:value={q} placeholder="try 'ai' or 'auth'" /></div>
 				<p style="display:flex;gap:8px;margin:0 0 2px"><button class="btn small ghost" onclick={shuffle}>⤨ Shuffle (flip demo)</button></p>
 			</div>
 			{#if editing}
 				<div style="margin-top:12px;border-top:1px solid var(--hairline);padding-top:12px">
-					<div class="grid c2"><div><label>Title</label><input bind:value={title} /></div><div><label>Tags (comma separated)</label><input bind:value={tags} /></div></div>
-					<label>Tagline</label><input bind:value={tagline} />
+					<div class="grid c2"><div><label for="pt">Title</label><input id="pt" bind:value={title} /></div><div><label for="ptags">Tags (comma separated)</label><input id="ptags" bind:value={tags} /></div></div>
+					<label for="ptag">Tagline</label><input id="ptag" bind:value={tagline} />
 					<p style="margin-top:12px;display:flex;gap:8px"><button class="btn small" onclick={saveEdit}>Save edit</button><button class="btn small ghost" onclick={() => { editing = null; title = tagline = tags = ''; }}>Cancel</button></p>
 				</div>
 			{/if}
