@@ -1,0 +1,17 @@
+{
+	"/": [
+		"src/routes/+page.server.ts"
+	],
+	"/blog": [
+		"src/routes/blog/+page.ts",
+		"src/routes/blog/+layout.ts",
+		"src/routes/blog/+layout.ts"
+	],
+	"/blog/[slug]": [
+		"src/routes/blog/[slug]/+page.ts",
+		"src/routes/blog/+layout.ts"
+	],
+	"/boom": [
+		"src/routes/boom/+page.ts"
+	]
+}
