@@ -12,6 +12,8 @@ type ContactForm =
 let { form = null }: { form?: ContactForm } = $props();
 	let sending = $state(false);
 	let optimistic = $state<string | null>(null);
+	let failed = $derived(form && 'ok' in form && form.ok === false ? form : null);
+	let succeeded = $derived(form && 'ok' in form && form.ok === true ? form : null);
 </script>
 
 <section id="contact" use:reveal>
