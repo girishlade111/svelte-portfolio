@@ -29,12 +29,12 @@
 	<div class="wrap">
 		<a class="brand" href="/">Girish<b>Lade</b> · LadeStack</a>
 		<div class="links">
-			<a href="#about">About</a>
-			<a href="#projects">Projects</a>
-			<a href="#skills">Skills</a>
-			<a href="#experience">Experience</a>
+			<a href="/#about">About</a>
+			<a href="/#projects">Projects</a>
+			<a href="/#skills">Skills</a>
+			<a href="/#experience">Experience</a>
 			<a href="/blog">Blog</a>
-			<a href="#contact">Contact</a>
+			<a href="/#contact">Contact</a>
 			<button class="btn small ghost" onclick={() => theme.update((t) => (t === 'dark' ? 'light' : 'dark'))}>
 				{$theme === 'dark' ? '☀ Light' : '◐ Dark'} · visits {$visits}
 			</button>
