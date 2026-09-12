@@ -28,28 +28,29 @@
 
 <section id="skills" use:reveal>
 	<div class="wrap">
-		<span class="kicker">$effect · context API</span>
-		<h2>Skills — hover the chart</h2>
-		<p class="sub">Canvas bars redraw in <code>$effect</code> whenever hover-state or the <code>theme context</code> (provided at root, consumed here deep in the tree) changes.</p>
-		<div class="grid c2" style="margin-top:16px">
-			<div class="card">
-				<canvas bind:this={canvas} style="width:100%;height:160px"></canvas>
-				<p class="cap">Theme now: <code>{$theme}</code> (toggle in nav) · hovered: <code>{hover ?? '—'}</code></p>
-			</div>
-			<div class="grid">
-				{#each skills as s}
-					<button
-						class="card"
-						style="text-align:left;cursor:pointer;{hover === s.name ? 'border-color:var(--accent)' : ''}"
-						onmouseenter={() => (hover = s.name)}
-						onmouseleave={() => (hover = null)}
-						onclick={() => (hover = hover === s.name ? null : s.name)}
-					>
-						<b>{s.name}</b> <span class="pill">{s.group}</span>
-						<span class="muted"> — {s.level}%</span>
-					</button>
+		<span class="kicker">$state · $effect · context API</span>
+		<h2>Skills — orbit map</h2>
+		<p class="sub">Hover or tap a node — <code>$effect</code> updates the detail panel. Theme comes from root context. Nodes use <code>animate:flip</code>.</p>
+		<div class="orbit-wrap" style="margin-top:16px">
+			<div class="orbit-stage" role="list" aria-label="Skill orbit">
+				<div class="orbit-ring"></div><div class="orbit-ring r2"></div><div class="orbit-ring r3"></div>
+				<div class="orbit-center">Girish</div>
+				{#each skills as s, idx (s.name)}
+					<button role="listitem" class="orbit-node" class:active={selected === s.name} style="{pos(idx)}width:{size(s.level)}px;height:{size(s.level)}px;margin:-{Math.round(size(s.level) / 2)}px 0 0 -{Math.round(size(s.level) / 2)}px;{selected === s.name ? 'border-color:var(--primary-glow);' : ''}"
+						onmouseenter={() => (selected = s.name)} onfocus={() => (selected = s.name)} onclick={() => (selected = s.name)}
+						in:fly={{ y: 14, delay: idx * 70 }} animate:flip={{ duration: 300 }} title="{s.name} {s.level}%">{s.name.split(' ')[0]}<br />{s.level}%</button>
 				{/each}
+			</div>
+			<div class="card">
+				{#key detail.name}<div in:fly={{ y: 10, duration: 250 }}>
+					<span class="kicker">{detail.group}</span>
+					<h3 style="margin-top:10px">{detail.name}</h3>
+					<p class="muted">{notes[detail.name] ?? ''}</p>
+					<p style="margin-top:10px"><span class="pill hot">{detail.level}% proficiency</span></p>
+					<p class="cap">Theme now: <code>{$theme}</code> · selected: <code>{selected}</code></p>
+				</div>{/key}
 			</div>
 		</div>
 	</div>
 </section>
+<hr class="divider-line" />

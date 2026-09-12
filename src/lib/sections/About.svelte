@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { fly } from 'svelte/transition';
 	import { reveal } from '$lib/actions';
 	// $props + $bindable demo: parent owns `open`, child can toggle it too
 	let { open = $bindable(false) }: { open?: boolean } = $props();
@@ -9,10 +10,6 @@
 	]);
 	let shown = $state(0);
 </script>
-
-{#snippet card(title: string, body: string)}
-	<div class="card"><h3>{title}</h3><p class="muted">{body}</p></div>
-{/snippet}
 
 <section id="about" use:reveal>
 	<div class="wrap">
