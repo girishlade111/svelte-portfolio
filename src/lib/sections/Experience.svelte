@@ -24,11 +24,13 @@
 				<p class="err">stream failed</p>
 			{/await}
 		</div>
-		<div class="timeline">
+		<div class="xp-track" use:reveal>
+			<div class="xp-line"></div>
 			{#each items as t}
-				<div use:reveal><span class="dot"></span><b>{t.role}</b><br /><span class="muted">{t.org} · {t.period}</span><p class="muted">{t.detail}</p></div>
+				<div class="xp-row" use:reveal><span class="xp-dot"></span><div class="card xp-card"><b>{t.role}</b><br /><span class="muted">{t.org} · {t.period}</span><p class="muted">{t.detail}</p><span class="xp-stat">{stats[t.role] ?? t.period}</span></div></div>
 			{/each}
 		</div>
 		<p class="cap">Also see client <code>load</code>: <a href="/blog">/blog</a> loads post index in <code>+page.ts</code>.</p>
 	</div>
 </section>
+<hr class="divider-line" />
