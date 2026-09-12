@@ -36,6 +36,6 @@
 				</div>
 			{/if}
 		</div>
-		<p class="cap">Capability: <code>$props</code> + <code>$bindable(open)</code>, reusable layout via <code>{'#snippet'} / {@render}</code>.</p>
+		<p class="cap">Capability: <code>$props</code> + <code>$bindable(open)</code>, reusable layout via <code>{'#snippet'} / {'@render'}</code>.</p>
 	</div>
 </section>
