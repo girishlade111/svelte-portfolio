@@ -6,13 +6,10 @@
 	import Experience from '$lib/sections/Experience.svelte';
 	import Contact from '$lib/sections/Contact.svelte';
 	import type { TimelineItem } from '$lib/data';
-	let {
-		data,
-		form
-	}: {
-		data: { timeline: TimelineItem[]; streamed: Promise<string> };
-		form: { ok: boolean; name?: string; errors?: Record<string, string[]>; values?: Record<string, unknown> } | null;
-	} = $props();
+	import type { ActionData } from './$types';
+	// `form` is populated by the `contact` action: undefined on first load,
+	// ActionData (fail(400) data or success) after submit.
+	let { data, form }: { data: { timeline: TimelineItem[]; streamed: Promise<string> }; form: ActionData } = $props();
 </script>
 
 <svelte:head><title>Girish Lade — Vibe Coder · Founder, LadeStack</title></svelte:head>

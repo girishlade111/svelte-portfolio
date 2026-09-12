@@ -2,7 +2,14 @@
 	import { enhance } from '$app/forms';
 	import { reveal } from '$lib/actions';
 	import { contactToast } from '$lib/stores';
-	let { form }: { form: { ok: boolean; name?: string; errors?: Record<string, string[]>; values?: Record<string, unknown> } | null } = $props();
+	// Contact form state comes from the `form` prop on validation failure (HTTP 400),
+// so the type must allow `undefined` (initial visit / success) — not just null.
+type ContactForm =
+	| { ok: true; name: string }
+	| { ok: false; errors: Record<string, string[] | undefined>; values: Record<string, unknown> }
+	| null
+	| undefined;
+let { form = null }: { form?: ContactForm } = $props();
 	let sending = $state(false);
 	let optimistic = $state<string | null>(null);
 </script>
