@@ -32,12 +32,12 @@
 	<div class="wrap">
 		<a class="brand" href="/"><span class="brand-mark">G</span>Girish<b>Lade</b></a>
 		<div class="nav-links" class:menu-open={menuOpen}>
-			<a href="/#about">About</a>
-			<a href="/#projects">Projects</a>
-			<a href="/#skills">Skills</a>
-			<a href="/#experience">Experience</a>
-			<a href="/blog">Blog</a>
-			<a href="/#contact">Contact</a>
+			<a class="nav-link" href="/#about">About</a>
+			<a class="nav-link" href="/#projects">Projects</a>
+			<a class="nav-link" href="/#skills">Skills</a>
+			<a class="nav-link" href="/#experience">Experience</a>
+			<a class="nav-link" href="/blog">Blog</a>
+			<a class="nav-link" href="/#contact">Contact</a>
 		</div>
 		<div class="nav-cta">
 			<a class="btn small" href="/#contact">Get started</a>
