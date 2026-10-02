@@ -100,10 +100,10 @@ const options = {
   service_worker_options: void 0,
   server_error_boundaries: false,
   templates: {
-    app: ({ head, body, assets, nonce, env }) => '<!doctype html>\r\n<html lang="en">\r\n	<head>\r\n		<meta charset="utf-8" />\r\n		<link rel="icon" href="' + assets + '/favicon.svg" />\r\n		<meta name="viewport" content="width=device-width, initial-scale=1" />\r\n		<meta name="description" content="Girish Lade — Mechanical Engineer turned Vibe Coder. Founder of LadeStack. Portfolio + live Svelte 5 / SvelteKit capability demo." />\r\n		' + head + '\r\n	</head>\r\n	<body data-sveltekit-preload-data="hover">\r\n		<div style="display: contents">' + body + "</div>\r\n	</body>\r\n</html>\r\n",
+    app: ({ head, body, assets, nonce, env }) => '<!doctype html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="icon" href="' + assets + '/favicon.svg" />\n		<meta name="viewport" content="width=device-width, initial-scale=1" />\n		<meta name="description" content="Girish Lade — Mechanical Engineer turned Vibe Coder. Founder of LadeStack. Portfolio + live Svelte 5 / SvelteKit capability demo." />\n		' + head + '\n	</head>\n	<body data-sveltekit-preload-data="hover">\n		<div style="display: contents">' + body + "</div>\n	</body>\n</html>\n",
     error
   },
-  version_hash: "1l244vq"
+  version_hash: "717jzt"
 };
 async function get_hooks() {
   let handle;

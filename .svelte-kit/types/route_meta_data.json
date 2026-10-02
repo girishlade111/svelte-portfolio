@@ -1,17 +1,23 @@
 {
 	"/": [
-		"src/routes/+page.server.ts"
+		"src/routes/+page.ts",
+		"src/routes/+layout.ts",
+		"src/routes/+layout.ts"
 	],
 	"/blog": [
 		"src/routes/blog/+page.ts",
 		"src/routes/blog/+layout.ts",
-		"src/routes/blog/+layout.ts"
+		"src/routes/+layout.ts",
+		"src/routes/blog/+layout.ts",
+		"src/routes/+layout.ts"
 	],
 	"/blog/[slug]": [
 		"src/routes/blog/[slug]/+page.ts",
-		"src/routes/blog/+layout.ts"
+		"src/routes/blog/+layout.ts",
+		"src/routes/+layout.ts"
 	],
 	"/boom": [
-		"src/routes/boom/+page.ts"
+		"src/routes/boom/+page.ts",
+		"src/routes/+layout.ts"
 	]
 }
