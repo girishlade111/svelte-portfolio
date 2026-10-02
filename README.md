@@ -1,43 +1,84 @@
-# Svelte + Vite
+# Girish Lade — Portfolio
 
-This template should help get you started developing with Svelte in Vite.
+Personal portfolio website of **Girish Lade**, solo founder of LadeStack. Dark, technical, developer-tools aesthetic (Composio design system) with a terminal-style 2×2 code-panel hero, near-black canvas, and a single deep-electric-blue voltage (`#0007cd`). Built with **SvelteKit + Svelte 5** (runes), deployed as a fully static site.
 
-## Recommended IDE Setup
+Live site: see the repo's Website link (set on the repo homepage field).
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+## Features
 
-## Need an official Svelte framework?
+- **Hero section** — terminal-style 2×2 mockup with a central blue spotlight glow, headline + CTAs
+- **Projects** — featured LadeStack projects (GB Coder, LS Auth, Dev Toolbox, Vibe CRM) with tags and links
+- **Skills** — animated skill bars grouped by Frontend / Backend / AI Workflow / Mechanical
+- **Experience** — career timeline (LadeStack founder → Mechanical Engineer → Vibe Coder)
+- **Blog** — prerendered markdown-style posts with dynamic `[slug]` routes and `entries()` generation
+- **Contact form** — form action with `use:enhance` progressive enhancement + server-side zod validation
+- **Error boundary** — custom `+error.svelte`; `/boom` route deliberately crashes to demo it
+- **Theme toggle** — dark/light theme with `$effect`-based init
+- **Visits counter** — cross-tab synced via `localStorage` events (SSR-safe store)
+- **View Transitions API** — smooth route transitions via `onNavigate`
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+## Tech Stack
 
-## Technical considerations
+- **SvelteKit 2** + **Svelte 5** (runes: `$state`, `$derived`, `$effect`, snippets)
+- **TypeScript** (strict) + `svelte-check`
+- **Vite 6** build, `vitePreprocess`
+- **zod** — contact form validation
+- **@sveltejs/adapter-static** — full static export (prerendered, SPA fallback for dynamic routes)
+- Design spec: `DESIGN.md` (Composio design analysis, alpha)
 
-**Why use this over SvelteKit?**
+## Quick Start
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
-
-This template contains as little as possible to get started with Vite + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
-
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
-
-**Why include `.vscode/extensions.json`?**
-
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
-
-**Why enable `checkJs` in the JS template?**
-
-It is likely that most cases of changing variable types in runtime are likely to be accidental, rather than deliberate. This provides advanced typechecking out of the box. Should you like to take advantage of the dynamically-typed nature of JavaScript, it is trivial to change the configuration.
-
-**Why is HMR not preserving my local component state?**
-
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/sveltejs/svelte-hmr/tree/master/packages/svelte-hmr#preservation-of-local-state).
-
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
-
-```js
-// store.js
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
+```bash
+npm install
+npm run dev        # vite dev server
+npm run check      # svelte-kit sync + svelte-check
+npm run build      # static export -> build/
+npm run preview    # preview the static build
 ```
+
+Requires **Node 20+**.
+
+## Project Structure
+
+```
+src/
+  app.html                  # HTML shell
+  theme.css                 # design tokens + global styles
+  lib/
+    data.ts                 # projects, skills, timeline, blog posts (single source of truth)
+    stores.ts               # visits counter (localStorage-synced)
+    theme.ts                # theme init
+    actions.ts              # reveal-on-scroll action
+    Counter.svelte           # demo counter component
+    Nav.svelte               # navigation
+    sections/               # Hero, About, Experience, Projects, Skills, Contact
+  routes/
+    +layout.svelte           # shell, theme init, view transitions
+    +layout.ts               # export const prerender = true
+    +page.ts                 # universal load: timeline + streamed note
+    +page.svelte             # homepage
+    blog/
+      +page.svelte           # post index
+      [slug]/+page.ts        # prerender=true, entries() from $lib/data
+      [slug]/+page.svelte    # post renderer
+    boom/+page.svelte        # deliberate crash demo (caught by +error.svelte)
+    +error.svelte
+svelte.config.js             # adapter-static, fallback index.html
+static/                      # favicon.svg and other static assets
+DESIGN.md                    # design system spec
+```
+
+## Env Vars
+
+None — the app is fully static with no backend, no database, no API keys.
+
+## Deploy Notes
+
+- `npm run build` emits a static `build/` directory (SvelteKit `adapter-static`).
+- Deploy `build/` to any static host: **Cloudflare Pages**, GitHub Pages, Netlify, Vercel.
+- SPA fallback is `index.html`; non-prerendered routes (e.g. `/boom`) render client-side.
+- Note: the contact form's server-side action is a static-site limitation — on a static host the form validation runs client-side only (progressive enhancement path).
+
+## Credits
+
+Built by **Girish Lade** — https://ladestack.in
